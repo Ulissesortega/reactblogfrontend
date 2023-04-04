@@ -1,0 +1,19 @@
+//Pages
+
+    Login Pages
+        The user will enter the username and password to login into the ap
+
+    Create Account Page
+        if the user does not have a login, this page will be used to handle creating Account
+
+    Dashboard Page (Profile or Admin Page)
+        Add Blog Item
+        Edit Blog Item
+        See all of out blog item
+        Delete Blog Items
+        Publish and Unpublished blog Items
+        Update users' username
+
+    Blog Page (wiewing the blogs)
+        This will be the page to see all the published blog Items
+        Blog will be presented in a mirror fashion
