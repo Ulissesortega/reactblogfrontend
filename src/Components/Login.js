@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
-import { login, GetLoggedUserData } from '../Services/DataService';
+import { login, GetLoggedInUserData } from '../Services/DataService';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
@@ -19,7 +19,7 @@ export default function Login() {
         let token = await login(userData);
         if(token.token != null){
             localStorage.setItem("Token", token.token);
-            //GetLoggedUserData(username)
+            await GetLoggedInUserData(Username)
             navigate("/Dashboard");
         }
     }

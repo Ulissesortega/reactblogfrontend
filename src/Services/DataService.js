@@ -41,6 +41,7 @@ async function createAccount(createdUser){
     let data =  await res.json();
     userData = data;
     console.log(userData)
+    return userData;
  }
 
  async function GetPublishedBlogItem()
@@ -51,9 +52,62 @@ async function createAccount(createdUser){
 
  }
 
+ function CheckToken(){
+    let result = false;
+    let lsData = localStorage.getItem('Token');
+    if(lsData != null){
+      result = true;
+    }
+    return result;
+ } 
+
+ function LoggedInData(){
+  return userData;
+ }
+
+ async function addBlogItem(BlogItem){
+  const res = await fetch('https://blogbackendcodestack.azurewebsites.net/blog/addblogitem',{
+     method:"POST",
+     headers:{
+       'Content-Type':"application/json"
+     },
+     body:JSON.stringify(BlogItem)
+    });
+    if(!res.ok){
+     const message = `An error has Occured ${res.status}`;
+     throw new Error(message);
+    }
+    let data = await res.json();
+    console.log(data);
+    return data;
+ }
+
+ async function getBlogItemsByUserId(userId){
+  let res = await fetch(`https://blogbackendcodestack.azurewebsites.net/blog/GetItemsByUserId/${userId}`);
+  let data =  await res.json();
+  userData = data;
+  return data;
+ }
 
 
+ async function updateBlogItem(blogItem){
+  const res = await fetch('https://blogbackendcodestack.azurewebsites.net/blog/UpdateBlogItem',{
+     method:"POST",
+     headers:{
+       'Content-Type':"application/json"
+     },
+     body:JSON.stringify(blogItem)
+    });
+    if(!res.ok){
+     const message = `An error has Occured ${res.status}`;
+     throw new Error(message);
+    }
+    let data = await res.json();
+    console.log(data);
+    return data;
+ }
 
- export { createAccount, login, GetLoggedInUserData, GetPublishedBlogItem}
+
+ export { createAccount, login, GetLoggedInUserData, GetPublishedBlogItem, CheckToken, LoggedInData, addBlogItem, getBlogItemsByUserId, updateBlogItem}
 
 
